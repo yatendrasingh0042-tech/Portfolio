@@ -1,0 +1,155 @@
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.6s;
+  overflow: hidden;
+}
+
+.loader-container.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-glass {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--glass-radius-lg);
+  padding: 3rem 2.5rem;
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+  animation: spinGlow 10s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes spinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-ring-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.loader-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.loader-circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.03);
+  stroke-width: 4;
+}
+
+body.light-theme .loader-circle-bg {
+  stroke: rgba(15, 23, 42, 0.03);
+}
+
+.loader-circle-fg {
+  fill: none;
+  stroke: url(#loaderGradient);
+  /* fallback color if gradients in svg are complex, we will use css stroke color */
+  stroke: var(--accent-indigo);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 283; /* 2 * PI * r = 2 * 3.14159 * 45 = 282.7 */
+  transition: stroke-dashoffset 0.1s ease-out;
+}
+
+.loader-percentage {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: baseline;
+}
+
+.percent-sign {
+  font-size: 1.1rem;
+  color: var(--accent-indigo);
+  margin-left: 1px;
+}
+
+.loader-info {
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.loader-initials {
+  font-family: var(--font-sans);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.loader-status-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+body.light-theme .loader-status-bar {
+  background: rgba(15, 23, 42, 0.05);
+}
+
+.loader-status-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+  border-radius: 2px;
+  transition: width 0.1s ease-out;
+}
+
+.loader-message {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  height: 1.2rem;
+  white-space: nowrap;
+}

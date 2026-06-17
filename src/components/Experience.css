@@ -1,0 +1,193 @@
+.exp__timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+.exp__line {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(99,102,241,0.4) 10%, rgba(99,102,241,0.4) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.exp__item {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  align-items: start;
+}
+
+.exp__item--left .exp__card { grid-column: 1; grid-row: 1; text-align: left; margin-right: 2rem; }
+.exp__item--left .exp__dot-wrap { grid-column: 2; grid-row: 1; }
+.exp__item--left::after { content: ''; grid-column: 3; }
+
+.exp__item--right .exp__card { grid-column: 3; grid-row: 1; text-align: left; margin-left: 2rem; }
+.exp__item--right .exp__dot-wrap { grid-column: 2; grid-row: 1; }
+.exp__item--right::before { content: ''; grid-column: 1; }
+
+.exp__dot-wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+
+.exp__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s;
+}
+
+.exp__card:hover ~ .exp__dot-wrap .exp__dot,
+.exp__card--open ~ .exp__dot-wrap .exp__dot { transform: scale(1.4); }
+
+.exp__card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+
+.exp__card--open { transform: none !important; }
+
+.exp__type {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 5px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  border: 1px solid;
+  margin-bottom: 0.9rem;
+}
+
+.exp__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.exp__role {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.01em;
+}
+
+.exp__company {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.exp__duration {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+
+.exp__desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.exp__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.exp__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  padding: 0;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+}
+
+.exp__toggle:hover { opacity: 0.75; text-decoration: underline; }
+
+.exp__achievements {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+  opacity: 0;
+}
+
+.exp__achievements--open {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 0.9rem;
+}
+
+.exp__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.exp__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.exp__list-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+/* --- Mobile: stacked timeline --- */
+@media (max-width: 768px) {
+  .exp__line { left: 20px; }
+  .exp__item {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto;
+  }
+  .exp__item--left .exp__card,
+  .exp__item--right .exp__card {
+    grid-column: 2; grid-row: 1;
+    margin: 0 0 0 0.5rem;
+  }
+  .exp__item--left .exp__dot-wrap,
+  .exp__item--right .exp__dot-wrap {
+    grid-column: 1; grid-row: 1;
+  }
+  .exp__item--left::after,
+  .exp__item--right::before { display: none; }
+}
