@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { personalInfo } from '../data/portfolio';
+import avatar from "../assets/avatar.png";
 import './Hero.css';
 
 const TYPED_STRINGS = [
@@ -158,8 +159,16 @@ export default function Hero() {
             {/* Central Orb */}
             <div className="hero__visual-orb">
               <div className="hero__visual-orb-inner">
-                <span className="hero__visual-emoji">👨‍💻</span>
+                <span className="hero__visual-emoji">
+                  <img
+  src={avatar}
+  alt="Yatendra Pratap Singh"
+  className="hero__visual-avatar"
+/>
+                </span>
               </div>
+           
+            
               {/* Orbiting rings */}
               <div className="hero__orbit hero__orbit--1">
                 <div className="hero__orbit-dot" style={{ background: '#6366F1' }} />

@@ -18,7 +18,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="footer__brand">
           <div className="footer__logo">
-            <span className="footer__logo-icon">YP</span>
+            <span className="footer__logo-icon">YPS</span>
             <span className="footer__logo-name">Yatendra Pratap Singh</span>
           </div>
           <p className="footer__tagline">
